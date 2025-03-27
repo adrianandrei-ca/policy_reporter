@@ -151,7 +151,11 @@ def binary_divide_by_three(sequence: list[int]) -> int:
             return 2
         case _:
             raise InvalidState()
-
+#
+# Transforms a digit string into a list of numbers
+#
+def string_digit_list(digit_string: str) -> list[int]:
+    return [int(digit) for digit in digit_string]
 
 class TestBinarySequenceDividedByThreeRemainder(unittest.TestCase):
     def test_expect_1(self):
@@ -173,6 +177,15 @@ class TestBinarySequenceDividedByThreeRemainder(unittest.TestCase):
     def test_invalid__input(self):
         with self.assertRaises(InvalidAlphabetContent):
             binary_divide_by_three([])
+
+    def test_string_input_1(self):
+        self.assertEqual(binary_divide_by_three(string_digit_list("1101")), 1)
+
+    def test_string_input_2(self):
+        self.assertEqual(binary_divide_by_three(string_digit_list("1110")), 2)
+
+    def test_string_input_0(self):
+        self.assertEqual(binary_divide_by_three(string_digit_list("1111")), 0)
 
 if __name__ == "__main__":
     unittest.main()
